@@ -6,17 +6,13 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Starting RateIQ database seed...');
 
-  // ---------------------------------------------------------
   // 1. PASSWORDS FOR DEVELOPMENT ACCOUNTS
-  // ---------------------------------------------------------
 
   const adminPassword = await bcrypt.hash('Admin@12345', 10);
   const ownerPassword = await bcrypt.hash('Owner@12345', 10);
   const userPassword = await bcrypt.hash('User@12345', 10);
 
-  // ---------------------------------------------------------
   // 2. ADMIN
-  // ---------------------------------------------------------
 
   const admin = await prisma.user.upsert({
     where: {
@@ -39,9 +35,7 @@ async function main() {
     },
   });
 
-  // ---------------------------------------------------------
   // 3. STORE OWNERS
-  // ---------------------------------------------------------
 
   const owner1 = await prisma.user.upsert({
     where: {
@@ -85,9 +79,7 @@ async function main() {
     },
   });
 
-  // ---------------------------------------------------------
   // 4. DEMO USERS
-  // ---------------------------------------------------------
 
   const user1 = await prisma.user.upsert({
     where: {
@@ -131,9 +123,7 @@ async function main() {
     },
   });
 
-  // ---------------------------------------------------------
   // 5. STORES
-  // ---------------------------------------------------------
 
   const stores = [
     {
@@ -204,9 +194,7 @@ async function main() {
     createdStores.push(store);
   }
 
-  // ---------------------------------------------------------
   // 6. RATINGS
-  // ---------------------------------------------------------
 
   const ratingPlan = [
     // Urban Basket
@@ -269,9 +257,7 @@ async function main() {
     });
   }
 
-  // ---------------------------------------------------------
   // 7. NOTIFICATIONS
-  // ---------------------------------------------------------
 
   const existingNotification = await prisma.notification.findFirst({
     where: {
@@ -311,9 +297,7 @@ async function main() {
     });
   }
 
-  // ---------------------------------------------------------
   // 8. AUDIT LOGS
-  // ---------------------------------------------------------
 
   const existingAuditLog = await prisma.auditLog.findFirst({
     where: {
@@ -337,9 +321,7 @@ async function main() {
     });
   }
 
-  // ---------------------------------------------------------
   // 9. SUMMARY
-  // ---------------------------------------------------------
 
   const userCount = await prisma.user.count();
   const storeCount = await prisma.store.count();
