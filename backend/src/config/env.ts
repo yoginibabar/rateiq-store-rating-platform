@@ -1,0 +1,1 @@
+import 'dotenv/config';import {z} from 'zod';export const env=z.object({PORT:z.coerce.number().default(5000),DATABASE_URL:z.string().min(1),JWT_SECRET:z.string().min(16),CLIENT_URL:z.string().default('http://localhost:5173'),NODE_ENV:z.enum(['development','test','production']).default('development')}).parse(process.env);

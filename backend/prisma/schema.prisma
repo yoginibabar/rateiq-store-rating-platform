@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+  OWNER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum NotificationType {
+  RATING
+  HEALTH
+  RISK
+  SYSTEM
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  name          String
+  email         String         @unique
+  passwordHash  String
+  address       String
+  role          Role           @default(USER)
+  status        UserStatus     @default(ACTIVE)
+  ratings       Rating[]
+  ownedStores   Store[]        @relation("StoreOwner")
+  notifications Notification[]
+  auditLogs     AuditLog[]     @relation("Actor")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@index([name])
+  @@index([role])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Store {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  address   String
+  ownerId   Int?
+  owner     User?    @relation("StoreOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  ratings   Rating[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@index([address])
+  @@index([ownerId])
+  @@index([createdAt])
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  value     Int
+  userId    Int
+  storeId   Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, storeId])
+  @@index([storeId, createdAt])
+  @@index([userId, createdAt])
+  @@index([value])
+}
+
+model Notification {
+  id        Int              @id @default(autoincrement())
+  userId    Int
+  type      NotificationType
+  title     String
+  message   String
+  isRead    Boolean          @default(false)
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime         @default(now())
+
+  @@index([userId, isRead])
+  @@index([createdAt])
+}
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  actorId    Int?
+  action     String
+  entityType String
+  entityId   Int?
+  metadata   Json?
+  actor      User?    @relation("Actor", fields: [actorId], references: [id], onDelete: SetNull)
+  createdAt  DateTime @default(now())
+
+  @@index([actorId])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
