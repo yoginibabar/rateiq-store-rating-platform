@@ -867,10 +867,7 @@ These documents explain the main calculations and design choices used by RateIQ.
 
 ## Author
 
-Built as a full-stack implementation for the **Roxiler FullStack Intern Coding Challenge**.
+**Yogini**  
+Full-stack implementation of the **Roxiler FullStack Intern Coding Challenge**.
 
-**Project:** RateIQ  
-**Focus:** Store Ratings & Reputation Intelligence  
-**Frontend:** React + TypeScript  
-**Backend:** Node.js + Express + TypeScript  
-**Database:** PostgreSQL
+**RateIQ — Intelligent Store Rating & Reputation Platform**
