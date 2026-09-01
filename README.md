@@ -867,7 +867,9 @@ These documents explain the main calculations and design choices used by RateIQ.
 
 ## Author
 
-**Yogini**  
-Full-stack implementation of the **Roxiler FullStack Intern Coding Challenge**.
+**Yogini Babar**
 
-**RateIQ — Intelligent Store Rating & Reputation Platform**
+Built as a full-stack implementation for the **Roxiler FullStack Intern Coding Challenge**.
+
+**RateIQ — Intelligent Store Rating & Reputation Platform**  
+*From Ratings to Real Insights.*
