@@ -1,1 +1,62 @@
-import {Request,Response,NextFunction} from 'express';import jwt from 'jsonwebtoken';import {Role} from '@prisma/client';import {env} from '../config/env';export type AuthRequest=Request&{user?:{id:number;role:Role}};export function auth(req:AuthRequest,res:Response,next:NextFunction){const h=req.headers.authorization;if(!h?.startsWith('Bearer '))return res.status(401).json({success:false,message:'Authentication required'});try{const p=jwt.verify(h.slice(7),env.JWT_SECRET) as any;if(typeof p.id!=='number'||!p.role)throw new Error();req.user={id:p.id,role:p.role};next()}catch{return res.status(401).json({success:false,message:'Invalid or expired token'})}}export const roles=(...allowed:Role[])=>(req:AuthRequest,res:Response,next:NextFunction)=>{if(!req.user)return res.status(401).json({success:false,message:'Authentication required'});if(!allowed.includes(req.user.role))return res.status(403).json({success:false,message:'Access denied'});next()};
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import { Role } from '@prisma/client';
+import { env } from '../config/env';
+
+export type AuthRequest = Request & {
+  user?: {
+    id: number;
+    role: Role;
+  };
+};
+
+export function auth(
+  req: AuthRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  const h = req.headers.authorization;
+
+  if (!h?.startsWith('Bearer ')) {
+    return res
+      .status(401)
+      .json({ success: false, message: 'Authentication required' });
+  }
+
+  try {
+    const p = jwt.verify(h.slice(7), env.JWT_SECRET) as any;
+
+    if (typeof p.id !== 'number' || !p.role) {
+      throw new Error();
+    }
+
+    req.user = {
+      id: p.id,
+      role: p.role,
+    };
+
+    next();
+  } catch {
+    return res
+      .status(401)
+      .json({ success: false, message: 'Invalid or expired token' });
+  }
+}
+
+export const roles =
+  (...allowed: Role[]) =>
+  (req: AuthRequest, res: Response, next: NextFunction) => {
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ success: false, message: 'Authentication required' });
+    }
+
+    if (!allowed.includes(req.user.role)) {
+      return res
+        .status(403)
+        .json({ success: false, message: 'Access denied' });
+    }
+
+    next();
+  };
