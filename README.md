@@ -2,170 +2,285 @@
 
 **From Ratings to Real Insights.**
 
-RateIQ is a full-stack store rating and reputation management platform built for managing stores, customer ratings, role-based workflows, and rating intelligence in one application.
+RateIQ is a full-stack store rating and reputation platform designed around a simple idea:
 
-The project was developed as a full-stack implementation of the Roxiler FullStack Intern Coding Challenge, with additional analytics and reputation features built around the core rating workflow.
+> A rating is useful, but the context behind the rating is even more useful.
 
----
+The platform supports three roles — **Administrator, Normal User, and Store Owner** — and covers the complete store-rating workflow from account management and store discovery to rating submission, monitoring, and reputation analytics.
 
-## Overview
-
-RateIQ connects three types of users:
-
-- **System Administrator** — manages users, stores, ratings, platform activity, risks, audits, and reports.
-- **Normal User** — discovers stores, searches stores, submits ratings, and updates previously submitted ratings.
-- **Store Owner** — monitors store ratings, customer feedback, rating trends, and store performance.
-
-Beyond the required assessment functionality, RateIQ adds an intelligence layer to help interpret rating data instead of treating ratings as simple numbers.
+Built as a full-stack implementation of the **Roxiler FullStack Intern Coding Challenge**, RateIQ also adds a lightweight, explainable intelligence layer for rating confidence, store health, trends, unusual activity, ranking, and insights.
 
 ---
 
-## Key Features
+## Product Focus
 
-### Authentication & Authorization
+RateIQ is organized around three actions:
 
-- Single login system for all application roles
+**Discover** → Find and compare stores using ratings, confidence, health, reviews, and improvement signals.
+
+**Understand** → Look beyond a single average rating using trends, distributions, confidence, health, and explainable insights.
+
+**Decide** → Use rating context to make better-informed store and reputation decisions.
+
+---
+
+## Core Platform Features
+
+### Authentication & Role-Based Access
+
+- One login system for all application roles
 - JWT-based authentication
-- Secure password hashing using bcrypt
-- Role-based access control
-- Protected API routes
-- Role-specific dashboards and navigation
+- Password hashing with bcrypt
+- Role-based authorization
+- Protected API endpoints
+- Role-specific navigation and dashboards
+- Secure password-change flow
 - Logout functionality
-- Password update functionality
 
-### System Administrator
+### Roles
 
-- Dashboard with:
-  - Total users
-  - Total stores
-  - Total ratings
-  - Average platform rating
-- Create normal users and administrators
-- Create and manage store owners
-- Search and filter users
-- Search and filter stores
+| Role | Primary Responsibilities |
+|---|---|
+| **Administrator** | Manage users, stores, ratings, risks, audits, and reports |
+| **Normal User** | Discover stores, submit ratings, update ratings, and manage their account |
+| **Store Owner** | Monitor store reputation, customer ratings, trends, and insights |
+
+---
+
+# Administrator Control Center
+
+The Administrator area provides centralized platform management.
+
+### Dashboard
+
+- Total users
+- Total stores
+- Total submitted ratings
+- Average platform rating
+- Platform health and risk signals
+
+### User Management
+
+- Create users
+- Create administrators
+- Create store owners
+- Search users
+- Filter by role
+- Search by name, email, and address
 - Sort tabular data in ascending/descending order
-- View user details
+- Activate/deactivate users
+- Edit user details
 - Display owner rating information
-- Store management
-- Rating management
-- Risk monitoring
-- Audit log monitoring
-- User/store/rating reporting
-- CSV-compatible report endpoints
 
-### Normal User
+### Store Management
 
-- Sign up and log in
-- View all registered stores
-- Search stores by name and address
-- Sort store results
-- View overall store rating
-- View personal submitted rating
-- Submit a rating from 1 to 5
-- Update a previously submitted rating
-- View personal rating history
-- Change password
-- Log out
-
-### Store Owner
-
-- Log in securely
-- View owned store information
-- View average store rating
+- Add stores
+- Edit stores
+- Assign store owners
+- Search stores
+- Sort store data
+- View store rating
 - View rating count
-- View users who submitted ratings
-- View rating distribution
-- Review rating trends
-- Monitor store performance
-- Change password
-- Log out
+- View store health
+- Manage store contact information
 
----
+### Rating Management
 
-## RateIQ Intelligence
-
-RateIQ adds an analytics layer around the required store-rating workflow.
-
-### Rating Confidence
-
-Provides a confidence indicator for store ratings based on available rating evidence and volume.
-
-### Store Health
-
-Combines rating-related signals into a higher-level view of store performance.
-
-### Rating Trends
-
-Analyzes rating activity over time to identify whether a store's reputation is improving, stable, or declining.
-
-### Activity Anomalies
-
-Highlights unusual rating activity patterns that may require review.
-
-### Smart Ranking
-
-Provides a more balanced ranking approach than simply comparing raw average ratings, reducing the impact of very small rating samples.
-
-### Explainable Insights
-
-Converts rating and activity data into readable insights so users can understand what the numbers indicate.
-
----
-
-## Notifications
-
-RateIQ includes a notification center with:
-
-- User notifications
-- Read/unread state
-- Backend notification support
-
----
-
-## Audit & Risk Monitoring
-
-### Audit Logs
-
-Important administrative and system actions can be recorded for traceability.
+- View submitted ratings
+- View rating customers
+- View rating timestamps
+- Sort rating records
 
 ### Risk Center
 
-Rating activity can be analyzed for unusual patterns and potential risk signals.
+- Monitor unusual rating activity
+- Show baseline activity
+- Show deviation signals
+- Categorize unusual activity as low/medium/high attention
+- Clearly distinguish anomaly detection from proof of fraudulent reviews
+
+### Audit Center
+
+- Trace important administrative actions
+- Record actor, action, entity, entity ID, and timestamp
+
+### Reports
+
+- User reports
+- Store reports
+- Rating reports
+- CSV export from the Reports screen
 
 ---
 
-## Reporting
+# Normal User Experience
 
-RateIQ provides reporting endpoints for:
+### Account
 
-- Users
-- Stores
-- Ratings
+- Sign up
+- Log in
+- Update password
+- Log out
 
-Reports are designed for CSV-compatible export and further analysis.
+### Store Explorer
+
+- View registered stores
+- Search by store name or address
+- Filter by minimum rating
+- Filter by minimum health
+- Rank by:
+  - Highest rating
+  - Most trusted / confidence
+  - Most reviewed
+  - Highest health
+  - Most improved
+
+### Store Details
+
+- Overall rating
+- Rating count
+- Rating distribution
+- Rating confidence
+- Store health
+- Rating trend
+- Explainable RateIQ insight
+- User's own submitted rating
+- Submit rating from 1–5
+- Update an existing rating
+
+### My Ratings
+
+- Review personal rating history
+- See rated stores and submitted values
+- Sort the displayed rating data
 
 ---
 
-## Productivity Features
+# Store Owner Experience
 
-### Command Palette
+### Owner Dashboard
 
-A `Ctrl/Cmd + K` command palette provides faster navigation between major application areas.
+- View owned stores
+- View average rating
+- View rating count
+- View reputation health
+- Review store-level performance
 
-### Responsive UI
+### Customer Ratings
 
-The application is designed to work across desktop and smaller screen sizes.
+- See users who submitted ratings
+- See submitted rating values
+- See dates/timestamps
 
-### Dark / Light Mode
+### Analytics
 
-The interface supports both light and dark presentation modes.
+- Rating distribution
+- Rating confidence
+- Store health
+- Rating trend
+- Performance context
+
+### Insights
+
+RateIQ turns calculated rating signals into readable explanations rather than displaying unexplained scores.
 
 ---
 
-## Validation Rules
+# RateIQ Intelligence Layer
 
-The application enforces the assessment validation requirements on the relevant forms:
+The intelligence layer is deterministic and explainable. It does not depend on an external AI API.
+
+## Rating Confidence
+
+Confidence increases with rating volume so a small sample is not presented as equally reliable as a larger sample.
+
+Current implementation:
+
+```text
+confidence = 100 × (1 − e^(-ratingCount / 20))
+```
+
+The result is capped at 100.
+
+This is intentionally a simple, explainable confidence signal rather than a claim of statistical certification.
+
+## Store Health
+
+Store Health combines several reputation signals into a 0–100 indicator.
+
+Current weighting:
+
+| Signal | Weight |
+|---|---:|
+| Rating Quality | 35% |
+| Rating Confidence | 25% |
+| Recent Trend | 20% |
+| Rating Stability | 10% |
+| Engagement | 10% |
+
+The score is designed as a product-level reputation indicator, not a financial, compliance, or business certification metric.
+
+## Rating Trend
+
+The current implementation compares:
+
+- Most recent 30 days
+- Previous 30-day period
+
+Trend classification:
+
+```text
+Change > +2%  → IMPROVING
+Change < -2%  → DECLINING
+Otherwise     → STABLE
+```
+
+## Activity Anomaly Detection
+
+The anomaly detector examines daily rating counts over the previous 30 days.
+
+It compares the current activity against the mean and standard deviation of the period and highlights unusually high activity.
+
+A detected anomaly means **unusual activity**, not proof of fake reviews.
+
+## Smart Ranking
+
+The Store Explorer can rank stores by more than raw average rating:
+
+- Rating
+- Confidence
+- Review count
+- Health
+- Improvement
+
+This gives users multiple ways to interpret reputation.
+
+## Explainable Insights
+
+RateIQ provides readable explanations such as:
+
+- Strong rating but limited confidence because of low rating volume
+- Rating performance is improving
+- Rating performance is declining
+- Rating performance is currently stable
+
+---
+
+# Notifications
+
+The platform includes notification support with:
+
+- User-specific notifications
+- Notification types
+- Read/unread state
+- Password-change notification support
+- Backend notification persistence
+
+---
+
+# Validation
+
+The application enforces the challenge validation rules on relevant user/account forms.
 
 | Field | Rule |
 |---|---|
@@ -174,114 +289,152 @@ The application enforces the assessment validation requirements on the relevant 
 | Password | 8–16 characters |
 | Password | At least one uppercase letter |
 | Password | At least one special character |
-| Email | Standard email format |
+| Email | Standard email validation |
 | Rating | Integer value from 1 to 5 |
 
-Validation is handled on the client side and reinforced on the backend.
+Validation is implemented with Zod and is checked on the backend for account/user operations.
+
+Store management also validates email format and address length.
 
 ---
 
-## Rating Rules
+# Rating Integrity
 
-Each user can maintain one rating per store.
+A normal user can have **one rating per store**.
 
-A submitted rating can later be updated by the same user.
+When the same user rates the same store again, the existing rating is updated instead of creating a duplicate.
 
-This is enforced at the database level with a unique user/store relationship.
+The database enforces this with:
+
+```text
+unique(userId, storeId)
+```
 
 ---
 
-## Sorting & Search
+# Search, Filtering & Sorting
 
-The application supports sorting for key tabular data using ascending and descending order.
+RateIQ provides:
 
-Search and filtering are available for major administration and store-discovery workflows.
+### Search
+
+- Users by name, email, and address
+- Stores by name, address, and store email
+
+### Filtering
+
+- User role
+- Minimum store rating
+- Minimum store health
+
+### Sorting
+
+Key table columns support ascending/descending sorting with visible direction indicators.
 
 Examples include:
 
-- User name
+- Name
 - Email
-- Address
 - Role
-- Store information
-- Rating-related fields
+- Rating
+- Owner Rating
+- Status
+- Date
+- Customer
+- Store
 
 ---
 
-## Technology Stack
+# Security
 
-### Frontend
+The application includes practical security protections:
+
+- bcrypt password hashing
+- JWT authentication
+- Role-based authorization
+- Protected API routes
+- Helmet security headers
+- CORS configuration
+- Express rate limiting
+- Request validation with Zod
+- Environment-based secrets/configuration
+- Database constraints for rating integrity
+
+The real `.env` file is intentionally excluded from version control.
+
+---
+
+# Technology Stack
+
+## Frontend
 
 - React
 - TypeScript
 - Vite
 - React Router
-- Tailwind CSS
 - Axios
 - React Hook Form
 - Zod
 - Recharts
+- Redux Toolkit / React Redux
+- CSS-based responsive UI
 
-### Backend
+## Backend
 
 - Node.js
 - Express.js
 - TypeScript
 - Prisma ORM
-- JSON Web Tokens (JWT)
-- bcrypt
+- PostgreSQL
+- JWT
+- bcryptjs
 - Helmet
 - CORS
-- Express Rate Limit
+- express-rate-limit
+- Zod
+- Morgan
 
-### Database
+## Development
 
-- PostgreSQL
-
-### Development & Delivery
-
+- npm
 - Git
 - GitHub
-- GitHub Actions
-- Docker
+- Postman
 
 ---
 
-## Architecture
+# Architecture
 
 ```text
-React + TypeScript Frontend
-            |
-            | REST API
-            v
-Express + TypeScript Backend
-            |
-     Authentication
-       Middleware
-            |
-            v
-        Prisma ORM
-            |
-            v
-       PostgreSQL
+┌──────────────────────────────────────┐
+│       React + TypeScript UI          │
+│  Dashboards · Forms · Charts · RBAC  │
+└──────────────────┬───────────────────┘
+                   │ REST / JSON
+                   ▼
+┌──────────────────────────────────────┐
+│      Express + TypeScript API        │
+│ Auth · RBAC · Validation · Routes    │
+│ Ratings · Admin · Owner · Reports    │
+└──────────────────┬───────────────────┘
+                   │ Prisma ORM
+                   ▼
+┌──────────────────────────────────────┐
+│             PostgreSQL               │
+│ Users · Stores · Ratings · Logs      │
+│ Notifications                        │
+└──────────────────────────────────────┘
 ```
 
-The backend contains dedicated areas for:
+The backend also contains deterministic intelligence utilities for confidence, health, trends, anomalies, and insights.
 
-- Configuration
-- Prisma access
-- Authentication middleware
-- Error handling
-- Application/server routes
-- Rating intelligence utilities
-
-Documentation for the architecture and intelligence layer is available in the `docs/` directory.
+Detailed architecture and algorithm notes are available in `docs/`.
 
 ---
 
-## Database
+# Database Design
 
-The relational database includes the core entities needed for the platform:
+The core relational model contains:
 
 ```text
 User
@@ -291,42 +444,37 @@ Notification
 AuditLog
 ```
 
-Important database design decisions include:
+### Important relationships
 
-- Relational foreign-key relationships
-- Indexed frequently queried fields
+```text
+User ───────< Rating >────── Store
+  │                           │
+  ├──────────< Notification   │
+  │                           │
+  └──────────< AuditLog       │
+                              │
+                           ownerId
+                              │
+                              ▼
+                             User
+```
+
+### Database practices
+
+- Foreign-key relationships
 - Unique user/store rating constraint
-- Timestamped records
-- Role-based user model
+- Indexes on frequently queried fields
+- Timestamp fields
+- Enum-based roles/statuses
+- Referential actions for dependent records
 - Normalized relational structure
 
 ---
 
-## Security
-
-RateIQ includes several security measures:
-
-- Password hashing with bcrypt
-- JWT authentication
-- Role-based authorization
-- Protected endpoints
-- Helmet security headers
-- CORS configuration
-- API rate limiting
-- Environment-based configuration
-- Frontend and backend validation
-- Database constraints for rating integrity
-
----
-
-## Project Structure
+# Project Structure
 
 ```text
 rateiq-store-rating-platform/
-│
-├── .github/
-│   └── workflows/
-│       └── ci.yml
 │
 ├── backend/
 │   ├── prisma/
@@ -342,8 +490,8 @@ rateiq-store-rating-platform/
 │   │   └── server.ts
 │   │
 │   ├── .env.example
-│   ├── Dockerfile
 │   ├── package.json
+│   ├── package-lock.json
 │   └── tsconfig.json
 │
 ├── frontend/
@@ -356,8 +504,10 @@ rateiq-store-rating-platform/
 │   │   ├── types.ts
 │   │   └── vite-env.d.ts
 │   │
-│   ├── Dockerfile
+│   ├── index.html
 │   ├── package.json
+│   ├── package-lock.json
+│   ├── tsconfig.json
 │   └── vite.config.ts
 │
 ├── docs/
@@ -374,43 +524,42 @@ rateiq-store-rating-platform/
 │
 ├── .env.example
 ├── .gitignore
-├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-## Getting Started
+# Getting Started
 
-### Prerequisites
-
-Make sure the following are installed:
+## Prerequisites
 
 - Node.js
 - npm
 - PostgreSQL
 - Git
 
----
-
-## 1. Clone the Repository
+## 1. Clone
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/rateiq-store-rating-platform.git
 cd rateiq-store-rating-platform
 ```
 
----
+## 2. Configure PostgreSQL
 
-## 2. Configure Backend Environment
+Create a PostgreSQL database named:
 
-Go to the backend directory:
-
-```bash
-cd backend
+```text
+rateiq
 ```
 
-Create a `.env` file based on `.env.example`.
+Then create:
+
+```text
+backend/.env
+```
+
+using `backend/.env.example` as the template.
 
 Example:
 
@@ -421,31 +570,15 @@ PORT=5000
 CLIENT_URL="http://localhost:5173"
 ```
 
-Do not commit `.env` to GitHub.
+Never commit the real `.env` file.
 
----
-
-## 3. Install Backend Dependencies
+## 3. Start Backend
 
 ```bash
+cd backend
 npm install
-```
-
-Generate Prisma Client:
-
-```bash
 npx prisma generate
-```
-
-Check database migration status:
-
-```bash
 npx prisma migrate status
-```
-
-Start the backend:
-
-```bash
 npm run dev
 ```
 
@@ -455,20 +588,19 @@ Backend:
 http://localhost:5000
 ```
 
----
+Health check:
 
-## 4. Install Frontend Dependencies
+```text
+http://localhost:5000/api/health
+```
+
+## 4. Start Frontend
 
 Open another terminal:
 
 ```bash
 cd frontend
 npm install
-```
-
-Start the frontend:
-
-```bash
 npm run dev
 ```
 
@@ -480,193 +612,265 @@ http://localhost:5173
 
 ---
 
-## 5. Production Build Verification
+# Seeded Demo Data
 
-### Frontend
+The backend seed script creates demo users, stores, ratings, notifications, and an audit record.
+
+### Administrator
+
+```text
+admin@rateiq.com
+```
+
+### Store Owner
+
+```text
+owner1@rateiq.com
+```
+
+### Normal User
+
+```text
+user1@rateiq.com
+```
+
+The corresponding development passwords are defined in `backend/prisma/seed.ts`.
+
+For local development, the seed can be run with:
+
+```bash
+cd backend
+npm run seed
+```
+
+---
+
+# API Surface
+
+The backend exposes REST endpoints covering:
+
+### Authentication
+
+```text
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/auth/me
+PUT    /api/auth/password
+```
+
+### Stores
+
+```text
+GET    /api/stores
+GET    /api/stores/:id
+GET    /api/stores/:id/health
+GET    /api/stores/:id/trends
+GET    /api/stores/:id/confidence
+GET    /api/stores/:id/my-rating
+```
+
+### Ratings
+
+```text
+POST   /api/ratings
+```
+
+### Owner
+
+```text
+GET    /api/owner/dashboard
+GET    /api/owner/ratings
+GET    /api/owner/analytics
+GET    /api/owner/insights
+```
+
+### Administrator
+
+```text
+GET    /api/admin/overview
+GET    /api/admin/users
+POST   /api/admin/users
+PUT    /api/admin/users/:id
+DELETE /api/admin/users/:id
+GET    /api/admin/stores
+POST   /api/admin/stores
+PUT    /api/admin/stores/:id
+DELETE /api/admin/stores/:id
+GET    /api/admin/ratings
+GET    /api/admin/risks
+```
+
+### Platform Utilities
+
+```text
+GET    /api/risks
+GET    /api/audit-logs
+GET    /api/notifications
+PATCH  /api/notifications/:id/read
+GET    /api/reports/users
+GET    /api/reports/stores
+GET    /api/reports/ratings
+GET    /api/analytics/overview
+```
+
+---
+
+# Postman
+
+A Postman collection is included here:
+
+```text
+postman/RateIQ.postman_collection.json
+```
+
+It can be imported into Postman to exercise the API flows for:
+
+- Authentication
+- Users
+- Stores
+- Ratings
+- Owner workflows
+- Admin workflows
+- Notifications
+- Reports
+- Analytics
+- Risk endpoints
+
+---
+
+# Verification
+
+The project has been locally verified through:
+
+### Frontend production build
 
 ```bash
 cd frontend
 npm run build
 ```
 
-### Backend
+### Backend TypeScript verification
 
 ```bash
 cd backend
 npx tsc --noEmit
 ```
 
----
-
-## Demo Accounts
-
-The project includes seeded demo data for testing the main roles.
-
-### Administrator
-
-```text
-Email: admin@rateiq.com
-```
-
-### Store Owner
-
-```text
-Email: owner1@rateiq.com
-```
-
-### Normal User
-
-```text
-Email: user1@rateiq.com
-```
-
-Demo passwords are defined in the backend seed configuration and should be used only for local assessment/demo environments.
-
----
-
-## Postman
-
-A Postman collection is included at:
-
-```text
-postman/RateIQ.postman_collection.json
-```
-
-The collection covers the main API workflows including:
-
-- Authentication
-- Users
-- Stores
-- Ratings
-- Administration
-- Owner dashboard
-- Notifications
-- Reports
-- Analytics
-- Risk-related endpoints
-
-Import the collection into Postman and configure the required authentication token/environment values.
-
----
-
-## Docker
-
-Docker configuration is included for easier environment setup.
+### Database verification
 
 ```bash
-docker compose up --build
+npx prisma migrate status
 ```
 
-The repository contains:
-
-- Backend Dockerfile
-- Frontend Dockerfile
-- Docker Compose configuration
+The project was also exercised through the browser and Postman during development.
 
 ---
 
-## CI
+# Assessment Alignment
 
-GitHub Actions configuration is available under:
+RateIQ implements the core workflow described in the Roxiler FullStack Intern Coding Challenge:
 
-```text
-.github/workflows/ci.yml
-```
-
-The workflow is intended to verify the project during repository changes.
-
----
-
-## Documentation
-
-Additional technical documentation is available under `docs/`.
-
-### Architecture
-
-```text
-docs/architecture.md
-```
-
-### Intelligence Layer
-
-```text
-docs/intelligence.md
-```
-
-### Algorithms
-
-```text
-docs/algorithms/
-├── anomaly-detection.md
-├── health-score.md
-├── rating-confidence.md
-└── rating-trend.md
-```
-
----
-
-## Assessment Requirement Coverage
-
-RateIQ covers the core requirements of the Roxiler FullStack Intern Coding Challenge.
-
-| Requirement | RateIQ |
+| Challenge Area | RateIQ Implementation |
 |---|---|
-| Express.js backend | ✅ |
-| PostgreSQL/MySQL database | ✅ |
-| React frontend | ✅ |
-| Single login system | ✅ |
-| System Administrator | ✅ |
-| Normal User | ✅ |
-| Store Owner | ✅ |
-| Normal-user registration | ✅ |
-| Store ratings from 1–5 | ✅ |
-| Admin dashboard totals | ✅ |
-| Admin user management | ✅ |
-| Admin store management | ✅ |
-| Admin rating management | ✅ |
-| User store discovery | ✅ |
-| Store search by name/address | ✅ |
-| Submit rating | ✅ |
-| Modify rating | ✅ |
-| Owner dashboard | ✅ |
-| Owner average rating | ✅ |
-| Owner rating submitters | ✅ |
-| Password update | ✅ |
-| Logout | ✅ |
-| Name validation: 20–60 | ✅ |
-| Address validation: max 400 | ✅ |
-| Password validation: 8–16 | ✅ |
-| Uppercase password requirement | ✅ |
-| Special-character requirement | ✅ |
-| Email validation | ✅ |
-| Ascending/descending sorting | ✅ |
-| Database best practices | ✅ |
+| Backend framework | Express.js + TypeScript |
+| Database | PostgreSQL + Prisma |
+| Frontend | React + TypeScript |
+| Single login | Shared authentication flow |
+| System Administrator | Control Center and management workflows |
+| Normal User | Registration, store discovery, ratings, account management |
+| Store Owner | Owner dashboard, rating visibility, analytics |
+| Rating range | 1–5 |
+| User/store management | Implemented |
+| Search & filtering | Implemented |
+| Password updates | Implemented |
+| Logout | Implemented |
+| Validation | Implemented for required account operations |
+| Ascending/descending sorting | Implemented in tabular views |
+| Relational database design | Implemented with constraints and indexes |
+
+The store-rating workflow is extended with reputation analytics and monitoring features without replacing the required assessment functionality.
 
 ---
 
-## Why I Built RateIQ
+# What Makes RateIQ Different
 
-The assessment focuses on a store-rating workflow, but the project was designed to go one step further.
+The project intentionally stays close to the assessment while adding a focused product layer.
 
-A rating by itself does not explain:
+Instead of stopping at:
 
-- How reliable the rating is
-- Whether the store is improving
-- Whether recent activity looks unusual
-- What factors are influencing store performance
+```text
+Store → Average Rating
+```
 
-RateIQ adds an intelligence layer around the rating data to make those questions easier to answer.
+RateIQ provides:
 
-**From Ratings to Real Insights.**
+```text
+Store
+  ├── Rating
+  ├── Rating Count
+  ├── Rating Confidence
+  ├── Rating Distribution
+  ├── Rating Trend
+  ├── Store Health
+  ├── Activity Anomaly Signal
+  └── Explainable Insight
+```
+
+This makes the rating data more useful without pretending that the system is an AI or fraud-detection authority.
+
+---
+
+# Design Principles
+
+RateIQ was built around a few practical principles:
+
+### Keep the core workflow simple
+
+The required store-rating flow remains easy to understand for users, owners, and administrators.
+
+### Make analytics explainable
+
+Scores and signals are derived from visible rating data and documented calculations.
+
+### Validate at the boundary
+
+User/account operations validate incoming data before persistence.
+
+### Protect data integrity in the database
+
+Important relationships such as one rating per user per store are enforced at the database layer.
+
+### Prefer useful signals over unnecessary complexity
+
+The intelligence layer is intentionally deterministic and lightweight so it remains understandable and maintainable.
+
+---
+
+# Documentation
+
+Technical documentation is available in `docs/`:
+
+```text
+docs/
+├── architecture.md
+├── intelligence.md
+└── algorithms/
+    ├── anomaly-detection.md
+    ├── health-score.md
+    ├── rating-confidence.md
+    └── rating-trend.md
+```
+
+These documents explain the main calculations and design choices used by RateIQ.
 
 ---
 
 ## Author
 
-Built as part of the Roxiler FullStack Intern Coding Challenge.
+Built as a full-stack implementation for the **Roxiler FullStack Intern Coding Challenge**.
 
 **Project:** RateIQ  
-**Type:** Full-Stack Web Application  
-**Database:** PostgreSQL  
+**Focus:** Store Ratings & Reputation Intelligence  
+**Frontend:** React + TypeScript  
 **Backend:** Node.js + Express + TypeScript  
-**Frontend:** React + TypeScript
+**Database:** PostgreSQL
