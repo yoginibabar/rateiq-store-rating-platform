@@ -373,7 +373,6 @@ The real `.env` file is intentionally excluded from version control.
 - Vite
 - React Router
 - Axios
-- React Hook Form
 - Zod
 - Recharts
 - Redux Toolkit / React Redux
@@ -392,7 +391,6 @@ The real `.env` file is intentionally excluded from version control.
 - CORS
 - express-rate-limit
 - Zod
-- Morgan
 
 ## Development
 
